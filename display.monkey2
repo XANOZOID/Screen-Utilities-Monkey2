@@ -42,17 +42,11 @@ Class DefaultDisplay Extends Display
 	
 	Method New( displayIndex:Int = 0 )
 		_displayIndex=displayIndex
-		If SDL_GetDisplayDPI( _displayIndex, Varptr _ddpi, Varptr _dpiX, Varptr _dpiY ) < 0
-			Print "Error, could not get display DPI"
-		End
 		
-		If SDL_GetCurrentDisplayMode( _displayIndex, Varptr _displayMode ) < 0
-			Print "Error, could not get current display mode."
-		End
-		
-	    _name=String.FromCString(SDL_GetDisplayName( _displayIndex )) ' Return Monkey String from 'Buffer'
-		
-		SDL_GetDisplayBounds( _displayIndex, Varptr _bounds )
+		_dpi=GetDisplayDPI( _displayIndex )
+		_displayMode=GetDisplayMode( _displayIndex )
+		_name=GetDisplayName( _displayIndex )
+		_bounds=GetDisplayBounds( _displayIndex )
 	End
 	
 	
@@ -61,7 +55,7 @@ Class DefaultDisplay Extends Display
 	End
 	
 	Property DPI:Vec3f() Override
-		Return New Vec3f( _dpiX, _dpiY, _ddpi )
+		Return _dpi
 	End
 
 	Property Name:String() Override
@@ -69,17 +63,15 @@ Class DefaultDisplay Extends Display
 	End
 	
 	Property Bounds:Recti() Override
-		Return New Recti( _bounds.x, _bounds.y, _bounds.x + _bounds.w, _bounds.y + _bounds.h )
+		Return _bounds
 	End
 	
 Private
-	Field _dpiX:Float
-	Field _dpiY:Float
-	Field _ddpi:Float
+	Field _bounds:Recti
+	Field _dpi:Vec3f
 	Field _displayIndex:Int 
 	Field _displayMode:SDL_DisplayMode
 	Field _name:String
-	Field _bounds:SDL_Rect
 	
 End
 
