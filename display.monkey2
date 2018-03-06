@@ -7,6 +7,19 @@ Using sdl2..
 Using std..
 
 Class Display
+	Property Dimensions:Vec2i() Abstract
+	
+	Property DPI:Vec3f() Abstract
+
+	Property Name:String() Abstract
+	
+	Property Bounds:Recti() Abstract
+End
+
+
+
+
+Class DefaultDisplay Extends Display
 	
 	Method New( displayIndex:Int = 0 )
 		_displayIndex=displayIndex
@@ -18,7 +31,6 @@ Class Display
 			Print "Error, could not get current display mode."
 		End
 		
-'		Const dname:=  ' PIPE "stdin" into "bufer"
 	    _name=String.FromCString(SDL_GetDisplayName( _displayIndex )) ' Return Monkey String from 'Buffer'
 		
 		SDL_GetDisplayBounds( _displayIndex, Varptr _bounds )
@@ -51,6 +63,9 @@ Private
 	Field _bounds:SDL_Rect
 	
 End
+
+
+
 
 Class AndroidDisplay Extends Display
 	
