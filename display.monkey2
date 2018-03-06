@@ -6,7 +6,26 @@ Namespace screentools.displaytool
 Using sdl2..
 Using std..
 
+#Rem monkeydoc Display class which has info about the display of a device. 
+#End
 Class Display
+	
+	#Rem monkeydoc Generic function which return a Display that is appropriate for the built target.
+		@param displayIndex SDL DisplayIndex
+		
+	    @example
+	    	Local display:Display.create()
+	    	Local WidthInch:= display.Dimensions.x/display.DPI.x
+	    @end
+	#End
+	Function Create:Display( displayIndex:Int=0 )
+#If __TARGET__="android"
+		Return New AndroidDisplay( displayIndex )
+#End
+
+		Return New DefaultDisplay( displayIndex )
+	End
+	
 	Property Dimensions:Vec2i() Abstract
 	
 	Property DPI:Vec3f() Abstract
@@ -37,19 +56,19 @@ Class DefaultDisplay Extends Display
 	End
 	
 	
-	Property Dimensions:Vec2i()
+	Property Dimensions:Vec2i() Override
 		Return New Vec2i( _displayMode.w, _displayMode.h )
 	End
 	
-	Property DPI:Vec3f()
+	Property DPI:Vec3f() Override
 		Return New Vec3f( _dpiX, _dpiY, _ddpi )
 	End
 
-	Property Name:String()
+	Property Name:String() Override
 		Return _name
 	End
 	
-	Property Bounds:Recti()
+	Property Bounds:Recti() Override
 		Return New Recti( _bounds.x, _bounds.y, _bounds.x + _bounds.w, _bounds.y + _bounds.h )
 	End
 	
@@ -63,8 +82,6 @@ Private
 	Field _bounds:SDL_Rect
 	
 End
-
-
 
 
 Class AndroidDisplay Extends Display
