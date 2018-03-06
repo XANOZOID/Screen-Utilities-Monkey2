@@ -1,6 +1,6 @@
 Namespace screentools.displaytool
 
-#Import "display"
+#Import "../display"
 
 #If __TARGET__="android"
 #Import "<sdl2>"
