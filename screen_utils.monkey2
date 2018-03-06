@@ -51,15 +51,3 @@ End
 Class AndroidDisplay Extends Display
 	
 End
-
-
-Function Main()
-	
-	Print "test"
-	
-	Local dim:Dimension=(5)
-	
-	Print String(Int(dim))
-	
-	
-End
