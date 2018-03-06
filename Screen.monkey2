@@ -1,11 +1,14 @@
-#Import "sdl2"
-#Import "std"
+Namespace screentools.displaytool
+
+#Import "<sdl2>"
+#Import "<std>"
+#Import "<libc>"
 Using sdl2..
 Using std..
 
 Class Display
 	
-	Method New( displayIndex:Int = 0 )
+	Method New( displayIndex:Int = 1 )
 		_displayIndex=displayIndex
 		If SDL_GetDisplayDPI( _displayIndex, Varptr _ddpi, Varptr _dpiX, Varptr _dpiY ) < 0
 			Print "Error, could not get display DPI"
@@ -15,7 +18,8 @@ Class Display
 			Print "Error, could not get current display mode."
 		End
 		
-		_name= Cast<String>(SDL_GetDisplayName( _displayIndex ))
+'		Const dname:=  ' PIPE "stdin" into "bufer"
+	    _name=String.FromCString(SDL_GetDisplayName( _displayIndex )) ' Return Monkey String from 'Buffer'
 		
 		SDL_GetDisplayBounds( _displayIndex, Varptr _bounds )
 	End
@@ -29,12 +33,12 @@ Class Display
 		Return New Vec3f( _dpiX, _dpiY, _ddpi )
 	End
 
-	Property Name()
+	Property Name:String()
 		Return _name
 	End
 	
-	Property Bounds()
-		Return New Rect( _bounds.x, _bounds.y, _bounds.x + _bounds.w, _bounds.y + _bounds.h )
+	Property Bounds:Recti()
+		Return New Recti( _bounds.x, _bounds.y, _bounds.x + _bounds.w, _bounds.y + _bounds.h )
 	End
 	
 Private
