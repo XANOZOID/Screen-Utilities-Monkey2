@@ -33,6 +33,9 @@ Class Display
 	Property Name:String() Abstract
 	
 	Property Bounds:Recti() Abstract
+	
+	Property RefreshRate:Int() Abstract
+	
 End
 
 
@@ -64,6 +67,10 @@ Class DefaultDisplay Extends Display
 	
 	Property Bounds:Recti() Override
 		Return _bounds
+	End
+	
+	Property RefreshRate:Int() Override
+		Return _displayMode.refresh_rate
 	End
 	
 Private
