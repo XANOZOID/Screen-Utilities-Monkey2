@@ -30,59 +30,52 @@ Class Display
 		Return New DefaultDisplay( displayIndex )
 	End
 	
-	Property Dimensions:Vec2i() Abstract
+	Property Dimensions:Vec2i()
+		Return _dimensions
+	End
 	
-	Property DPI:Vec3f() Abstract
-
-	Property Name:String() Abstract
+	Property DPI:Vec3f()
+		Return _dpi
+	End
 	
-	Property Bounds:Recti() Abstract
+	Property Name:String()
+		Return _name
+	End
 	
-	Property RefreshRate:Int() Abstract
+	Property Bounds:Recti()
+		Return _bounds
+	End
 	
+	Property RefreshRate:Int()
+		Return _refreshRate
+	End
+	
+Protected
+	Field _bounds:Recti
+	Field _dpi:Vec3f
+	Field _displayMode:SDL_DisplayMode
+	Field _name:String
+	Field _dimensions:Vec2i
+	Field _refreshRate:Int
 End
 
 
 
 
 Class DefaultDisplay Extends Display
-	
 	Method New( displayIndex:Int = 0 )
-		_displayIndex=displayIndex
+'		_displayIndex=displayIndex
 		
 		Local wrapper:=New SDLWrap( displayIndex )
 		_dpi=wrapper.GetDisplayDPI()
-		_displayMode=wrapper.GetDisplayMode()
+		
+		Local displayMode:=wrapper.GetDisplayMode()
+		_dimensions=New Vec2i( _displayMode.w, _displayMode.h )
+		_refreshRate=displayMode.refresh_rate
+		
 		_name=wrapper.GetDisplayName()
 		_bounds=wrapper.GetDisplayBounds()
 	End
 	
-	
-	Property Dimensions:Vec2i() Override
-		Return New Vec2i( _displayMode.w, _displayMode.h )
-	End
-	
-	Property DPI:Vec3f() Override
-		Return _dpi
-	End
-
-	Property Name:String() Override
-		Return _name
-	End
-	
-	Property Bounds:Recti() Override
-		Return _bounds
-	End
-	
-	Property RefreshRate:Int() Override
-		Return _displayMode.refresh_rate
-	End
-	
-Private
-	Field _bounds:Recti
-	Field _dpi:Vec3f
-	Field _displayIndex:Int 
-	Field _displayMode:SDL_DisplayMode
-	Field _name:String
 	
 End
