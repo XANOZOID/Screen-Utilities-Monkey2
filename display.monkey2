@@ -10,23 +10,7 @@ Using sdlwrap..
 #Rem monkeydoc Display class which has info about the display of a device. 
 #End
 Class Display
-	
-	#Rem monkeydoc Generic function which return a Display that is appropriate for the built target.
-		@param displayIndex SDL DisplayIndex
-		
-	    @example
-	    	Local display:Display.create()
-	    	Local WidthInch:= display.Dimensions.x/display.DPI.x
-	    @end
-	#End
-	Function Create:Display( displayIndex:Int=0 )
-#If __TARGET__="android"
-		Return New AndroidDisplay( displayIndex )
-#End
 
-		Return New DefaultDisplay( displayIndex )
-	End
-	
 	Property Dimensions:Vec2i()
 		Return _dimensions
 	End
