@@ -3,21 +3,23 @@ Namespace screentools.displaytool
 #Import "../display"
 
 #If __TARGET__="android"
+#Import "<std>"
 #Import "<sdl2>"
 
-#Import "native/DisplayUtility.java"
-#Import "sdl_wrappers"
- 
+#Import "../native/AndroidDisplayUtility.java"
+#Import "../sdl_wrappers"
+
+
 Using std..
 Using sdl2..
  
  
 #Rem monkeydocs Returns the vertical(true) or horizontal(false) DPI for Android. 
 #End
-Function GetDPI:Int( vertical:Bool )
+Function GetDPI:Float( vertical:Bool )
 	Local env:=sdl2.Android_JNI_GetEnv()	
-	Local cls:=env.FindClass( "com/monkey2/lib/DisplayUtility" )
-	Local mth:=env.GetStaticMethodID( cls, "getDPI", "(Z)I" )	
+	Const cls:=env.FindClass( "com/monkey2/lib/DisplayUtility" )
+	Const mth:=env.GetStaticMethodID( cls, "getDPI", "(Z)F" )	
 	Return env.CallStaticIntMethod( cls, mth, New Variant[]( vertical ) )
 End 
 
@@ -33,11 +35,11 @@ Class AndroidDisplay Extends Display
 		
 		' Get the Android DPI if SDL failed
 		If wrapper.failed 
-			_dpi=New Vec3i( GetDPI(False), GetDPI(True), 0 )
+			_dpi=New Vec3f( GetDPI(False), GetDPI(True), 0 )
 		End
 		
 		Local displayMode:=wrapper.GetDisplayMode()
-		_dimensions=New Vec2i( _displayMode.w, _displayMode.h )
+		_dimensions=New Vec2i( displayMode.w, displayMode.h )
 		_refreshRate=displayMode.refresh_rate
 		
 		_name=wrapper.GetDisplayName()

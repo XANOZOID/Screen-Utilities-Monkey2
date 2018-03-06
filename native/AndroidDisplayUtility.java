@@ -4,16 +4,16 @@ import android.util.DisplayMetrics;
 import android.view.WindowManager;
  
 public class AndroidDisplayUtility {
-    private static final String TAG = "DisplayUtility";
+    private static final String TAG = "AndroidDisplayUtility";
     
-    static public int getDPI( boolean vertical ) {
+    static public flaot getDPI( boolean vertical ) {
 	    DisplayMetrics metrics = new DisplayMetrics();
         Monkey2Activity.mSingleton.getWindowManager().getDefaultDisplay().getMetrics(metrics);
         
         if( vertical ){
-            return (int)metrics.ydpi;
+            return metrics.ydpi;
         } else {
-            return (int)metrics.xdpi;
+            return metrics.xdpi;
         }
     }
     
