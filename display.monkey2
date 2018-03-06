@@ -1,13 +1,10 @@
 Namespace screentools.displaytool
 
-#Import "<sdl2>"
 #Import "<std>"
 
 #Import "sdl_wrappers"
 
-Using sdl2..
 Using std..
-
 Using sdlwrap..
 
 #Rem monkeydoc Display class which has info about the display of a device. 
@@ -53,10 +50,10 @@ Class Display
 Protected
 	Field _bounds:Recti
 	Field _dpi:Vec3f
-	Field _displayMode:SDL_DisplayMode
 	Field _name:String
 	Field _dimensions:Vec2i
 	Field _refreshRate:Int
+	
 End
 
 
@@ -70,7 +67,7 @@ Class DefaultDisplay Extends Display
 		_dpi=wrapper.GetDisplayDPI()
 		
 		Local displayMode:=wrapper.GetDisplayMode()
-		_dimensions=New Vec2i( _displayMode.w, _displayMode.h )
+		_dimensions=New Vec2i( displayMode.w, displayMode.h )
 		_refreshRate=displayMode.refresh_rate
 		
 		_name=wrapper.GetDisplayName()
