@@ -6,6 +6,7 @@ Using std..
 
 Class SDLWrap
 	Field displayIndex:Int
+	Field failed:=False
 	
 	Method New( displayIndex:Int )
 		Self.displayIndex=displayIndex
@@ -13,19 +14,13 @@ Class SDLWrap
 	
 	Method GetDisplayDPI:Vec3f()
 		Local ddpi:Float, dpiX:Float, dpiY:Float
-		If SDL_GetDisplayDPI( displayIndex, Varptr ddpi, Varptr dpiX, Varptr dpiY ) < 0
-	'		Print "Error, could not get display DPI."
-			Return Null
-		End
+		failed=SDL_GetDisplayDPI( displayIndex, Varptr ddpi, Varptr dpiX, Varptr dpiY ) < 0
 		Return New Vec3f( dpiX, dpiY, ddpi )
 	End 
 	
 	Method GetDisplayMode:SDL_DisplayMode()
 		Local displayMode:=New SDL_DisplayMode
-		If SDL_GetCurrentDisplayMode( displayIndex, Varptr displayMode ) < 0
-	'		Print "Error, could not get current display mode."
-			Return Null
-		End
+		failed=SDL_GetCurrentDisplayMode( displayIndex, Varptr displayMode ) < 0
 		Return displayMode
 	End
 	
@@ -35,10 +30,7 @@ Class SDLWrap
 	
 	Method GetDisplayBounds:Recti()
 		Local bounds:SDL_Rect
-		If SDL_GetDisplayBounds( displayIndex, Varptr bounds ) < 0 
-	'		Print "Error, could not get display bounds."
-			Return Null
-		End
+		failed=SDL_GetDisplayBounds( displayIndex, Varptr bounds ) < 0
 		Return New Recti( bounds.x, bounds.y, bounds.x + bounds.w, bounds.y + bounds.h )
 	End
 End
