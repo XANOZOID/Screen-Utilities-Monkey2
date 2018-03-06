@@ -18,12 +18,13 @@ Class DisplayTest Extends Window
 	End
 	
 	Method OnCreateWindow() Override	
-		Local display:=New Display
+		Local display:=Display.Create()
 		displayStats=""
-		displayStats+=display.Name					+ "~n"
-		displayStats+=String(display.Dimensions)	+ "~n"
-		displayStats+=String(display.DPI)			+ "~n"
-		displayStats+=display.Bounds	
+		displayStats+="screen: " + display.Name						+ "~n"
+		displayStats+="dimension: " + String(display.Dimensions)	+ "~n"
+		displayStats+="DPI: " + String(display.DPI)					+ "~n"
+		displayStats+="bounds: " + display.Bounds					+ "~n"
+		displayStats+="refresh rate: " + display.RefreshRate	
 		
 		Print displayStats
 	End
