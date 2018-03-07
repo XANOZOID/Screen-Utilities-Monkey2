@@ -8,8 +8,7 @@ Namespace screentools.displaytool
 
 #Import "../native/AndroidDisplayUtility.java"
 #Import "../sdl_wrappers"
-
-
+ 
 Using std..
 Using sdl2..
  

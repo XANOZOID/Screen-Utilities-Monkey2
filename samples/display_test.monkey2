@@ -3,7 +3,7 @@ Namespace screentools.tests
 #Import "<std>"
 #Import "<mojo>"
 
-#Import "screen_tools"
+#Import "../screen_tools"
 
 Using std..
 Using mojo..
@@ -18,7 +18,7 @@ Class DisplayTest Extends Window
 	End
 	
 	Method OnCreateWindow() Override	
-		Local display:=Display.Create()
+		Local display:=CreateCurrentDisplay()
 		displayStats=""
 		displayStats+="screen: " + display.Name						+ "~n"
 		displayStats+="dimension: " + String(display.Dimensions)	+ "~n"
