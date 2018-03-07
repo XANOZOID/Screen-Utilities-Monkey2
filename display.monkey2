@@ -5,7 +5,6 @@ Namespace screentools.displaytool
 #Import "sdl_wrappers"
 
 Using std..
-Using sdlwrap..
 
 #Rem monkeydoc Display class which has info about the display of a device. 
 #End

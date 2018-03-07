@@ -1,4 +1,7 @@
-Namespace sdlwrap
+Namespace screentools
+
+Internal	' don't provide these lower level utility functions to the user
+
 #Import "<sdl2>"
 #Import "<std>"
 Using sdl2..
