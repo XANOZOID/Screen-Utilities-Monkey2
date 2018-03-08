@@ -29,7 +29,7 @@ Class SDLWrap
 	
 	Method GetDisplayName:String()
 		failed=False ' reset failure because there is no way to detect it.
-	    Return String.FromCString(SDL_GetDisplayName( displayIndex )) ' Return Monkey String from 'Buffer'
+	    Return String.FromCString(SDL_GetDisplayName( displayIndex )) 
 	End 
 	
 	Method GetDisplayBounds:Recti()

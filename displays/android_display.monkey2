@@ -1,4 +1,5 @@
 Namespace screentools.displaytool
+Internal
 
 #Import "../display"
 
