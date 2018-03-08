@@ -4,7 +4,12 @@ Namespace screentools
 #Import "displays/default_display"
 
 
-#Rem monkeydoc Generic function which return a Display that is appropriate for the built target.
+#Rem monkeydoc Use this function to grab a usable Display instance.
+	This function will generate the correct type of Display information you need
+	depending on the current export target. 
+	- Currently Android has been tested to require additional fallbacks
+	 past SDL's own features. 
+	
 	@param displayIndex SDL DisplayIndex
 	
     @example
