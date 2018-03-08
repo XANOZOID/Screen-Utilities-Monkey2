@@ -6,7 +6,7 @@ import android.view.WindowManager;
 public class AndroidDisplayUtility {
     private static final String TAG = "AndroidDisplayUtility";
     
-    static public flaot getDPI( boolean vertical ) {
+    static public float getDPI( boolean vertical ) {
 	    DisplayMetrics metrics = new DisplayMetrics();
         Monkey2Activity.mSingleton.getWindowManager().getDefaultDisplay().getMetrics(metrics);
         

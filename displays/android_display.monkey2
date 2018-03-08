@@ -17,9 +17,9 @@ Using sdl2..
 #End
 Function GetDPI:Float( vertical:Bool )
 	Local env:=sdl2.Android_JNI_GetEnv()	
-	Const cls:=env.FindClass( "com/monkey2/lib/DisplayUtility" )
+	Const cls:=env.FindClass( "com/monkey2/lib/AndroidDisplayUtility" )
 	Const mth:=env.GetStaticMethodID( cls, "getDPI", "(Z)F" )	
-	Return env.CallStaticIntMethod( cls, mth, New Variant[]( vertical ) )
+	Return env.CallStaticFloatMethod( cls, mth, New Variant[]( vertical ) )
 End 
 
 
