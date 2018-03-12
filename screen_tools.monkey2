@@ -2,6 +2,7 @@ Namespace screentools
 #Import "display"
 #Import "displays/android_display"
 #Import "displays/default_display"
+#Import "displays/ios_display"
 
 
 #Rem monkeydoc Use this function to grab a usable Display instance.
@@ -20,7 +21,9 @@ Namespace screentools
 Function CreateCurrentDisplay:Display( displayIndex:Int=0 )
 #If __TARGET__="android"
 	Return New AndroidDisplay( displayIndex )
-#End
-
+#Else If  __TARGET__="IOS"
+	Return New IOSDisplay( displayIndex )
+#Else
 	Return New DefaultDisplay( displayIndex )
+#End
 End
