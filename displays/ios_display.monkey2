@@ -7,8 +7,11 @@ Internal
 #Import "<std>"
 #Import "<sdl2>"
 
-'#Import "../native/AndroidDisplayUtility.java"
+#Import "../native/IOSDisplayUtility.mm"
 #Import "../sdl_wrappers"
+
+Extern
+Function IOSDeviceName:String()="IOSDeviceName"
  
 Using std..
 Using sdl2..
@@ -23,7 +26,9 @@ Class IOSDisplay Extends Display
 		
 		' Get the IOS DPI if SDL failed
 		If wrapper.failed 
+			Print "confirmed failure to load IOS DPI"
 		End
+		Print "device name is: " + IOSDeviceName()
 		
 		Local displayMode:=wrapper.GetDisplayMode()
 		_dimensions=New Vec2i( displayMode.w, displayMode.h )
