@@ -83,9 +83,9 @@ Class IOSDisplay Extends Display
 		
 		' Get the IOS DPI if SDL failed
 		If wrapper.failed 
-			Print "confirmed failure to load IOS DPI"
+			_dpi=IOSDPI()
+			Print " DPI FAILED (retrying): device name is: " + IOSDeviceName()	
 		End
-		Print "device name is: " + IOSDeviceName()
 		
 		Local displayMode:=wrapper.GetDisplayMode()
 		_dimensions=New Vec2i( displayMode.w, displayMode.h )
