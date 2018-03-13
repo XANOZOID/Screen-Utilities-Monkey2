@@ -15,6 +15,7 @@ Using sdl2..
 
 Extern
 Function IOSDeviceName:String()="IOSDeviceName"
+Public
 
 
 ' Implementation translated from https://github.com/marchv/UIScreenExtension/blob/master/UIScreenExtension/UIScreenExtension.swift
