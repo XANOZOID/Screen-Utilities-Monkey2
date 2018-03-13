@@ -8,15 +8,17 @@ Internal
 #Import "<sdl2>"
 
 #Import "../native/IOSDisplayUtility.mm"
+#Import "../native/IOSDisplayUtility.h"
 #Import "../sdl_wrappers"
 
 Using std..
 Using sdl2..
 
 Extern
-Function IOSDeviceName:String()="IOSDeviceName"
-Public
 
+Function IOSDeviceName:String()="IOSDeviceName"
+
+Public
 
 ' Implementation translated from https://github.com/marchv/UIScreenExtension/blob/master/UIScreenExtension/UIScreenExtension.swift
 Function IOSDPI:Vec3f()
